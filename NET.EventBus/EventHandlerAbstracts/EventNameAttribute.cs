@@ -8,6 +8,11 @@ namespace NET.EventBus.EventHandlerAbstracts
 {
     public class EventNameAttribute : Attribute
     {
+        public EventNameAttribute(string name)
+        {
+            Name = name;
+        }
+
         public virtual string Name { get; }
 
     }

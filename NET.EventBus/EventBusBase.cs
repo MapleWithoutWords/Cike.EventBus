@@ -27,19 +27,18 @@ namespace NET.EventBus
 
         public async Task PublishAsync<TEvent>(TEvent eventData, bool isReleased = false)
         {
-            m
             await PublishAsync(typeof(TEvent), eventData, isReleased);
 
         }
 
-        public async IDisposable Subscribe<TEventData, TEventHandler>()
+        public IDisposable Subscribe<TEventData, TEventHandler>()
                                  where TEventData : class
                                  where TEventHandler : class, IEventHandler, new()
         {
             return Subscribe(typeof(TEventData), new InstanceEventHandlerFactory(new TEventHandler()));
         }
 
-        public async IDisposable Subscribe(Type eventDataType, IEventHandler eventHandler)
+        public IDisposable Subscribe(Type eventDataType, IEventHandler eventHandler)
         {
             return Subscribe(eventDataType, new InstanceEventHandlerFactory(eventHandler));
         }
@@ -48,12 +47,31 @@ namespace NET.EventBus
 
         public void UnSubscribe(Type eventDataType, IEventHandler eventHandler)
         {
-            throw new NotImplementedException();
+            UnSubscribe(eventDataType, new InstanceEventHandlerFactory(eventHandler));
         }
 
-        public void UnSubscribeAll(Type eventDataType)
+        public abstract void UnSubscribeAll(Type eventDataType);
+
+        public IDisposable Subscribe<TEventData>(IEventHandler eventHandler)
         {
-            throw new NotImplementedException();
+            return Subscribe(typeof(TEventData), eventHandler);
+        }
+
+        public IDisposable Subscribe<TEventData>(IEventHandlerFactory eventHandlerFactory)
+        {
+            return Subscribe(typeof(TEventData), eventHandlerFactory);
+        }
+
+        public void UnSubscribe<TEventData>(IEventHandler eventHandler)
+        {
+            UnSubscribe(typeof(TEventData), eventHandler);
+        }
+
+        public abstract void UnSubscribe(Type eventDataType, IEventHandlerFactory eventHandler);
+
+        public void UnSubscribe<TEventData>(IEventHandlerFactory eventHandlerFactory)
+        {
+            UnSubscribe(typeof(TEventData), eventHandlerFactory);
         }
     }
 }

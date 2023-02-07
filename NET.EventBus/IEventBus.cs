@@ -50,7 +50,7 @@ namespace NET.EventBus
         public void UnSubscribe(Type eventDataType, IEventHandler eventHandler);
         public void UnSubscribe<TEventData>(IEventHandler eventHandler);
         public void UnSubscribe(Type eventDataType, IEventHandlerFactory eventHandler);
-        public void UnSubscribe<TEventData>(IEventHandlerFactory eventHandler);
+        public void UnSubscribe<TEventData>(IEventHandlerFactory eventHandlerFactory);
 
         /// <summary>
         /// un subscribe all handler for event

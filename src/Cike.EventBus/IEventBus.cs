@@ -1,6 +1,6 @@
-﻿using NET.EventBus.EventHandlerAbstracts;
+﻿using Cike.EventBus.EventHandlerAbstracts;
 
-namespace NET.EventBus
+namespace Cike.EventBus
 {
     public interface IEventBus
     {

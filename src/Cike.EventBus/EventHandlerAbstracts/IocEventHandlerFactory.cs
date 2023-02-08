@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NET.EventBus.EventHandlerAbstracts
+namespace Cike.EventBus.EventHandlerAbstracts
 {
     /// <summary>
     /// IOC event handler factory

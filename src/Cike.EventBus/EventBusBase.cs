@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using NET.EventBus.EventHandlerAbstracts;
-using NET.EventBus.EventMiddleware;
+using Cike.EventBus.EventHandlerAbstracts;
+using Cike.EventBus.EventMiddleware;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NET.EventBus
+namespace Cike.EventBus
 {
     public abstract class EventBusBase : IEventBus
     {

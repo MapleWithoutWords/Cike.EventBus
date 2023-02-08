@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NET.EventBus.EventMiddleware
+namespace Cike.EventBus.EventMiddleware
 {
     public interface IEventMiddleware
     {

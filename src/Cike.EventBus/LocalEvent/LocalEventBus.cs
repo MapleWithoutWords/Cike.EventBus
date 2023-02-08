@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using NET.EventBus.EventHandlerAbstracts;
-using NET.EventBus.EventMiddleware;
+using Cike.EventBus.EventHandlerAbstracts;
+using Cike.EventBus.EventMiddleware;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NET.EventBus.LocalEvent
+namespace Cike.EventBus.LocalEvent
 {
     public class LocalEventBus : EventBusBase, ILocalEventBus
     {

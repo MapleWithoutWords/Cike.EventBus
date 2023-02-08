@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace MFU.EventBus.Test.Controllers
+namespace Cike.EventBus.Test.Controllers
 {
     [ApiController]
     [Route("[controller]")]

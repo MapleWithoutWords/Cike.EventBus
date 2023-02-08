@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NET.EventBus.EventHandlerAbstracts
+namespace Cike.EventBus.EventHandlerAbstracts
 {
     public interface ILocalEventHandler<TEventData> : IEventHandler
     {

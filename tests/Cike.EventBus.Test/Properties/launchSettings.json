@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "MFU.EventBus.Test": {
+    "Cike.EventBus.Test": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

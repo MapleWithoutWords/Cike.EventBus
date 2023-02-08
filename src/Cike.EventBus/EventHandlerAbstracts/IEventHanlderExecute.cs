@@ -1,11 +1,11 @@
-﻿using NET.EventBus.DistributedEvent;
+﻿using Cike.EventBus.DistributedEvent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NET.EventBus.EventHandlerAbstracts
+namespace Cike.EventBus.EventHandlerAbstracts
 {
     public delegate Task EventHandlerExecuteAsync(IEventHandler target, object parameter);
 

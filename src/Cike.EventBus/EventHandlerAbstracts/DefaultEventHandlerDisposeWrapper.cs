@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NET.EventBus.EventHandlerAbstracts
+namespace Cike.EventBus.EventHandlerAbstracts
 {
     /// <summary>
     /// 对EventHandler包装一层，用于释放非托管资源

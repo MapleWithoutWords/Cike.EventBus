@@ -11,15 +11,22 @@ namespace NET.EventBus
     public class EventBusOptions
     {
         public List<Type> Handlers { get; set; }
+        public List<Type> EventMiddlewares { get; set; }
 
         public EventBusOptions()
         {
             Handlers = new List<Type>();
+            EventMiddlewares = new List<Type>();
         }
 
-        public void LoadHandlerForAsemmbly(params Assembly[] assemblies)
+        public void AddHandlerForAsemmbly(params Assembly[] assemblies)
         {
 
+        }
+
+        public void UseEventMiddleware<T>()
+        {
+            EventMiddlewares.Add(typeof(T));
         }
     }
 }

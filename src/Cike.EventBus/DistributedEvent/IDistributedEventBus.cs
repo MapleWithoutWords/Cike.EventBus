@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NET.EventBus
+namespace NET.EventBus.DistributedEvent
 {
-    public interface ILocalEventBus : IEventBus
+    public interface IDistributedEventBus : IEventBus
     {
-        public Task Subscribe<TEventData>(ILocalEventHandler<TEventData> handler);
+
     }
 }

@@ -12,7 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution 
 		common.props = common.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.EventBus", "src\NET.EventBus\NET.EventBus.csproj", "{4D1EAD08-E079-4239-B5FD-BC7591398A5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mfu.EventBus", "src\Cike.EventBus\Cike.EventBus.csproj", "{4D1EAD08-E079-4239-B5FD-BC7591398A5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFU.EventBus.Test", "tests\Cike.EventBus.Test\Cike.EventBus.Test.csproj", "{B54A8B01-2BFC-4977-AEBF-640DE9747734}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,12 +26,17 @@ Global
 		{4D1EAD08-E079-4239-B5FD-BC7591398A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D1EAD08-E079-4239-B5FD-BC7591398A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D1EAD08-E079-4239-B5FD-BC7591398A5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B54A8B01-2BFC-4977-AEBF-640DE9747734}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B54A8B01-2BFC-4977-AEBF-640DE9747734}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B54A8B01-2BFC-4977-AEBF-640DE9747734}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B54A8B01-2BFC-4977-AEBF-640DE9747734}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4D1EAD08-E079-4239-B5FD-BC7591398A5A} = {AE4024AA-5FDA-433A-8728-FED8CE2B969B}
+		{B54A8B01-2BFC-4977-AEBF-640DE9747734} = {2FC84CD0-D2B2-4B20-8283-79EFD0097ED9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {110EB58B-231C-48CE-A83A-39B0790E2914}

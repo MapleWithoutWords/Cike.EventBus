@@ -10,11 +10,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{B77B6E39-9E7C-46CC-8018-4CD331560D00}"
 	ProjectSection(SolutionItems) = preProject
 		common.props = common.props
+		LICENSE = LICENSE
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mfu.EventBus", "src\Cike.EventBus\Cike.EventBus.csproj", "{4D1EAD08-E079-4239-B5FD-BC7591398A5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cike.EventBus", "src\Cike.EventBus\Cike.EventBus.csproj", "{4D1EAD08-E079-4239-B5FD-BC7591398A5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFU.EventBus.Test", "tests\Cike.EventBus.Test\Cike.EventBus.Test.csproj", "{B54A8B01-2BFC-4977-AEBF-640DE9747734}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cike.EventBus.Test", "tests\Cike.EventBus.Test\Cike.EventBus.Test.csproj", "{B54A8B01-2BFC-4977-AEBF-640DE9747734}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,10 +4,13 @@
 		<Version>1.0.1</Version>
 		<Authors>James li</Authors>
 		<Company>James li</Company>
-		<PackageProjectUrl>https://gitee.com/fengwuyan/auto-web-api</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/MapleWithoutWords/Cike.EventBus</PackageProjectUrl>
 		<PackageIcon>logo.png</PackageIcon>
-		<RepositoryUrl>https://gitee.com/fengwuyan/auto-web-api</RepositoryUrl>
-		<RepositoryType>gitee</RepositoryType>
+		<RepositoryUrl>https://github.com/MapleWithoutWords/Cike.EventBus</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<Title>Cike.EventBus</Title>
+		<Description>This is a EventBus library for .net core . it's support localhost event and distributed event</Description>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<NoWarn>$(NoWarn);CS1591</NoWarn>
 
 	</PropertyGroup>

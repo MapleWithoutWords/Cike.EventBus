@@ -8,7 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCikeEventBus(opt =>
 {
     opt.AddHandlerForAsemmbly(Assembly.GetEntryAssembly());
-    opt.UseEventMiddleware<LoggerEventMiddleware>();
+
+    opt.UseEventMiddleware<LoggerEventMiddleware>()
+        .UseEventMiddleware<UserEventMiddleware>();
 });
 
 var apiInfo = new OpenApiInfo

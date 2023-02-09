@@ -13,6 +13,7 @@ namespace Cike.EventBus.Test.EventMiddlewares
         {
             _logger.LogDebug($"事件中间件，记录日志：事件id=【{context.EventId}】、事件类型=【{context.EventType}】、事件处理器个数=【{context.EventHandlerFactories.Count}】");
 
+            //一定要加next委托执行，不然将中断事件执行。
             await next(context);
         }
     }

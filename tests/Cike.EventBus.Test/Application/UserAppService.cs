@@ -1,9 +1,10 @@
-﻿using Cike.EventBus.DistributedEvent;
+﻿using Cike.AutoWebApi.Setting;
+using Cike.EventBus.DistributedEvent;
 using Cike.EventBus.Test.EventData;
 
 namespace Cike.EventBus.Test.Application
 {
-    public class UserAppService : IUserAppService
+    public class UserAppService : IAutoApiService
     {
         private readonly IDistributedEventBus _distributedEventBus;
 

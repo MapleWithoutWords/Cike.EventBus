@@ -7,8 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCikeEventBus(opt =>
 {
+    //从某个程序集加载事件处理器
     opt.AddHandlerForAsemmbly(Assembly.GetEntryAssembly());
 
+    //添加事件拦截中间件
     opt.UseEventMiddleware<LoggerEventMiddleware>()
         .UseEventMiddleware<UserEventMiddleware>();
 });

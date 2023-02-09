@@ -26,7 +26,7 @@ dotnet add package Cike.EventBus
    订阅事件处理：允许多次订阅
 
    * ```IDistributedEventHandler<TEventData>``` 分布式事件处理器
-   * ```ILocalEventHandler<TEventData>``` ：分布式事件处理器
+   * ```ILocalEventHandler<TEventData>``` ：本地事件处理器
 
 2. EventMiddleware：事件中间件，允许添加多个中间件，并按照添加顺序执行
 

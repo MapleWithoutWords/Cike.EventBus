@@ -44,7 +44,7 @@ namespace Cike.EventBus
 
         protected virtual async Task PublishToEventBusAsync(EventMiddlewareContext context)
         {
-
+            List<Exception> exceptions = new List<Exception>();
             foreach (var item in context.EventHandlerFactories)
             {
                 using var eventHandlerWrapper = item.GetEventHandler();
@@ -63,7 +63,19 @@ namespace Cike.EventBus
                 {
                     execute = (IEventHanlderExecute)Activator.CreateInstance(typeof(DistributedEventHanlderExecute<>).MakeGenericType(context.EventType))!;
                 }
-                await execute!.ExecuteAsync(eventHandlerWrapper.EventHandler, context.EventData);
+
+                try
+                {
+                    await execute!.ExecuteAsync(eventHandlerWrapper.EventHandler, context.EventData);
+                }
+                catch (Exception ex)
+                {
+                    exceptions.Add(ex);
+                }
+            }
+            if (exceptions.Count > 0)
+            {
+                throw new AggregateException(exceptions);
             }
         }
 
@@ -140,7 +152,7 @@ namespace Cike.EventBus
         {
             if (_eventDelegate == null)
             {
-                using var scope= serviceScopeFactory.CreateScope();
+                using var scope = serviceScopeFactory.CreateScope();
 
                 _eventDelegate = PublishToEventBusAsync;
 

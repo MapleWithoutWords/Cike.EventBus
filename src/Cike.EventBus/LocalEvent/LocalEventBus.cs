@@ -20,30 +20,5 @@ namespace Cike.EventBus.LocalEvent
         }
 
 
-
-        protected override async Task PublishToEventBusAsync(EventMiddlewareContext context)
-        {
-
-            foreach (var item in context.EventHandlerFactories)
-            {
-                using var eventHandlerWrapper = item.GetEventHandler();
-
-                IEventHanlderExecute execute = null;
-                if (typeof(ILocalEventHandler<>).MakeGenericType(context.EventType).IsInstanceOfType(eventHandlerWrapper.EventHandler))
-                {
-                    //异步方法
-                    //eventHandlerWrapper.EventHandler.GetType().GetMethod("HandlerAsync")?.Invoke(eventHandlerWrapper.EventHandler, new object[] { context.EventData });
-
-                    //改成执行器，包装一层
-                    execute = (IEventHanlderExecute)Activator.CreateInstance(typeof(LocalEventHanlderExecute<>).MakeGenericType(context.EventType))!;
-                }
-
-                if (typeof(IDistributedEventHandler<>).MakeGenericType(context.EventType).IsInstanceOfType(eventHandlerWrapper.EventHandler))
-                {
-                    execute = (IEventHanlderExecute)Activator.CreateInstance(typeof(DistributedEventHanlderExecute<>).MakeGenericType(context.EventType))!;
-                }
-                await execute!.ExecuteAsync(eventHandlerWrapper.EventHandler, context.EventData);
-            }
-        }
     }
 }

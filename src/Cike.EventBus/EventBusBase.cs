@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Concurrent;
 
 namespace Cike.EventBus
 {
@@ -22,14 +23,16 @@ namespace Cike.EventBus
         {
             ServiceScopeFactory = serviceScopeFactory;
 
-            SubscribeOptionsHanlder(eventBusOptions.EventMiddlewares);
+            _eventHandlerFactoryDic = new ConcurrentDictionary<Type, List<IEventHandlerFactory>>();
 
-            CreateDelegate(serviceScopeFactory, eventBusOptions.EventMiddlewares);
+            SubscribeOptionsHanlder(eventBusOptions.Handlers);
+
+            CreateDelegate(serviceScopeFactory);
         }
 
 
         /// <inheritdoc/>
-        public async Task PublishAsync<TEvent>(TEvent eventData, bool isComplete = false)
+        public virtual async Task PublishAsync<TEvent>(TEvent eventData, bool isComplete = false)
         {
             if (isComplete == false)
             {
@@ -64,7 +67,7 @@ namespace Cike.EventBus
             }
         }
 
-        private EventMiddlewareContext GetEventMiddlewareContext(Type eventType, object eventData)
+        protected EventMiddlewareContext GetEventMiddlewareContext(Type eventType, object eventData)
         {
             EventMiddlewareContext context = new EventMiddlewareContext()
             {
@@ -80,13 +83,13 @@ namespace Cike.EventBus
         /// </summary>
         /// <param name="eventType"></param>
         /// <returns></returns>
-        public virtual ICollection<IEventHandlerFactory> GetEventHandlerFactories(Type eventType)
+        protected virtual ICollection<IEventHandlerFactory> GetEventHandlerFactories(Type eventType)
         {
             List<IEventHandlerFactory> factories = new List<IEventHandlerFactory>();
             foreach (var item in _eventHandlerFactoryDic)
             {
                 //当前类型，或者其子类的处理器
-                if (item.Key == eventType || eventType.IsAssignableFrom(item.Key))
+                if (item.Key == eventType || item.Key.IsAssignableFrom(eventType))
                 {
                     factories.AddRange(item.Value);
                 }
@@ -132,20 +135,31 @@ namespace Cike.EventBus
             _eventHandlerFactoryDic[eventDataType].Add(eventHandlerFactory);
         }
 
-        private void CreateDelegate(IServiceScopeFactory serviceScopeFactory, ICollection<Type> eventMiddlewareTypes)
+
+        private void CreateDelegate(IServiceScopeFactory serviceScopeFactory)
         {
-            if (_eventDelegate != null)
+            if (_eventDelegate == null)
             {
-                using var scope = serviceScopeFactory.CreateScope();
+                using var scope= serviceScopeFactory.CreateScope();
+
                 _eventDelegate = PublishToEventBusAsync;
-                foreach (var item in eventMiddlewareTypes.Reverse())
+
+                var eventMiddlewares = scope.ServiceProvider.GetRequiredService<IEnumerable<IEventMiddleware>>();
+
+                foreach (var item in eventMiddlewares.Reverse())
                 {
-                    _eventDelegate += async (context) =>
+                    //处理闭包问题
+                    Action<EventMiddlewareDelegate> action = (next) =>
                     {
-                        await ((IEventMiddleware)scope.ServiceProvider.GetRequiredService(item)).InvokeAsync(context, _eventDelegate);
+                        _eventDelegate = async (context) =>
+                        {
+                            await item.InvokeAsync(context, next);
+                        };
                     };
+                    action(_eventDelegate);
                 }
             }
         }
+
     }
 }

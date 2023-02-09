@@ -15,10 +15,10 @@ namespace Cike.EventBus.EventHandlerAbstracts
     }
     public class LocalEventHanlderExecute<TEventData> : IEventHanlderExecute
     {
-        public EventHandlerExecuteAsync ExecuteAsync { get => (target, parameter) => ((ILocalEventHandler<TEventData>)target).HandlerAsync((TEventData)parameter); }
+        public EventHandlerExecuteAsync ExecuteAsync { get => async (target, parameter) => await((ILocalEventHandler<TEventData>)target).HandlerAsync((TEventData)parameter); }
     }
     public class DistributedEventHanlderExecute<TEventData> : IEventHanlderExecute
     {
-        public EventHandlerExecuteAsync ExecuteAsync { get => (target, parameter) => ((IDistributedEventHandler<TEventData>)target).HandlerAsync((TEventData)parameter); }
+        public EventHandlerExecuteAsync ExecuteAsync { get => async (target, parameter) => await((IDistributedEventHandler<TEventData>)target).HandlerAsync((TEventData)parameter); }
     }
 }

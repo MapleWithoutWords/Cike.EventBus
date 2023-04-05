@@ -1,15 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Cike.EventBus.EventHandlerAbstracts;
 
-namespace Cike.EventBus.EventHandlerAbstracts
+/// <summary>
+/// 事件处理器
+/// </summary>
+public interface IEventHandler
 {
     /// <summary>
-    /// 事件处理器
+    /// 执行序号
     /// </summary>
-    public interface IEventHandler
-    {
-    }
+    public int ExecSeqNo { get; set; }
+}
+
+/// <summary>
+/// 事件处理器
+/// </summary>
+public interface IEventHandler<TEventData> : IEventHandler
+{
+
+    public Task HandlerAsync(TEventData eventData);
 }

@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cike.EventBus.EventHandlerAbstracts
 {
-    public interface ILocalEventHandler<TEventData> : IEventHandler
+    public interface ILocalEventHandler<TEventData> : IEventHandler<TEventData>
     {
-        public Task HandlerAsync(TEventData eventData);
     }
 }

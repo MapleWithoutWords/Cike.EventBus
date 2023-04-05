@@ -45,9 +45,9 @@ namespace Cike.EventBus
         protected virtual async Task PublishToEventBusAsync(EventMiddlewareContext context)
         {
             List<Exception> exceptions = new List<Exception>();
-            foreach (var item in context.EventHandlerFactories)
+            foreach (var item in context.GetSortedEventHandler())
             {
-                using var eventHandlerWrapper = item.GetEventHandler();
+                using var eventHandlerWrapper = item;
 
                 IEventHanlderExecute execute = null;
                 if (typeof(ILocalEventHandler<>).MakeGenericType(context.EventType).IsInstanceOfType(eventHandlerWrapper.EventHandler))

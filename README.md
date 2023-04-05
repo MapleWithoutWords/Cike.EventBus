@@ -32,6 +32,10 @@ dotnet add package Cike.EventBus
 
    > Cike.EventBus中的事件中间件，允许自定义中间件拦截事件命令，并且可以支持中断事件执行。可以用于一些事件日志的记录，校验等
 
+3. 事件编排：Cike.EventBus允许设置事件处理的执行顺序，比如说有多个事件处理Hanlder，那么可以配置执行的先后顺序
+
+> 继承自IDistributedEventHandler或ILocalEventHandler时，必须实现ExecSeqNo属性，并赋值。
+
 ##### 1. 事件总线使用
 
 1. 在 `Program.cs` 中添加以下代码
@@ -82,6 +86,10 @@ public class UserAppService : IAutoApiService
 ```c#
 public class UserDeleted1Handler : IDistributedEventHandler<UserDeletedEventArgs>
 {
+    /// <summary>
+    /// 事件编排：执行序号
+    /// </summary>
+    public int ExecSeqNo { get; set; }
     private readonly ILogger _logger;
 
     public UserDeleted1Handler(ILoggerFactory loggerFactory)

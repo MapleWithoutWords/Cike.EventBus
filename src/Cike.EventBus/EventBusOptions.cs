@@ -12,12 +12,16 @@ namespace Cike.EventBus
     public class EventBusOptions
     {
         public List<Type> Handlers { get; protected set; }
+
+        public List<IEventHandlerFactory> EventHandlerFactoies { get; protected set; }
+
         public List<Type> EventMiddlewares { get; protected set; }
 
         public EventBusOptions()
         {
             Handlers = new List<Type>();
             EventMiddlewares = new List<Type>();
+            EventHandlerFactoies = new List<IEventHandlerFactory>();
         }
 
         public EventBusOptions AddHandlerForAsemmbly(params Assembly[] assemblies)
@@ -31,10 +35,23 @@ namespace Cike.EventBus
             {
                 foreach (var typeItem in item.GetTypes())
                 {
-                    if (typeof(IEventHandler).IsAssignableFrom(typeItem) && typeItem.IsClass)
+                    if (typeItem.IsAbstract || typeItem.IsClass == false)
+                    {
+                        continue;
+                    }
+                    if (typeof(IEventHandler).IsAssignableFrom(typeItem))
                     {
                         Handlers.Add(typeItem);
+                        continue;
                     }
+                    //foreach (var methodItem in typeItem.GetMethods())
+                    //{
+                    //    var eventHanlderAttr = methodItem.GetCustomAttribute<EventHandlerAttribute>();
+                    //    if (eventHanlderAttr != null)
+                    //    {
+
+                    //    }
+                    //}
                 }
             }
             return this;

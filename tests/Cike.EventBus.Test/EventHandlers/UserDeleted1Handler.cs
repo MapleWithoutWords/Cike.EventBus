@@ -12,6 +12,8 @@ namespace Cike.EventBus.Test.EventHandlers
             _logger = loggerFactory.CreateLogger<UserDeleted1Handler>();
         }
 
+        public int ExecSeqNo { get; set; } = 2;
+
         public async Task HandlerAsync(UserDeletedEventArgs eventData)
         {
             Console.WriteLine("UserDeleted1Handler===事件处理程序");
